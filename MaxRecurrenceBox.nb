@@ -1,0 +1,696 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     32097,        688]
+NotebookOptionsPosition[     31374,        662]
+NotebookOutlinePosition[     31730,        678]
+CellTagsIndexPosition[     31687,        675]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "From \"Options from graphics\" documentation page :\nThe Wolfram Language \
+always tries to plot functions as smooth curves.Asa result, in places where \
+your function wiggles a lot, the Wolfram Language will use more \
+points.Ingeneral, the Wolfram Language tries to adapt its sampling of your \
+function to the form of the function.Thereis a limit, however, which you can \
+set, to how finely the Wolfram Language will ever sample a function.\n\nIt is \
+important to realize that since the Wolfram Language can only sample your \
+function at a limited number of points, it can always miss features of the \
+function. The Wolfram Language adaptively samples the functions, increasing \
+the number of samples near interesting features, but it is still possible to \
+miss something. By increasing ",
+ Cell[BoxData[
+  TemplateBox[{Cell[
+     TextData["PlotPoints"]],"paclet:ref/PlotPoints"},
+   "RefLink",
+   BaseStyle->{"InlineFormula"}]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "7da1cb84-dfc3-4346-9ce1-f5f8a4982ffd"],
+ ", you can make the Wolfram Language sample your function at a larger number \
+of points. Of course, the larger you set ",
+ Cell[BoxData[
+  TemplateBox[{Cell[
+     TextData["PlotPoints"]],"paclet:ref/PlotPoints"},
+   "RefLink",
+   BaseStyle->{"InlineFormula"}]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "c6ba7d8f-9b8c-4cc3-95c1-c934fe6edf7e"],
+ " to be, the longer it will take the Wolfram Language to plot ",
+ StyleBox["any",
+  FontSlant->"Italic"],
+ " function, even a smooth one. \nDefault value for PlotPoints: 50"
+}], "Input",
+ Evaluatable->False,
+ CellChangeTimes->{{3.35415280193427*^9, 3.35415283120027*^9}, {
+   3.35415286735699*^9, 3.35415302670278*^9}, {3.35415315682944*^9, 
+   3.35415318028287*^9}, {3.35415321147077*^9, 3.35415327573721*^9}, {
+   3.35415330730012*^9, 3.35415332578473*^9}, {3.35415349792756*^9, 
+   3.35415357163163*^9}, {3.35415369574259*^9, 3.35415369830512*^9}, {
+   3.35733197835938*^9, 3.35733197851563*^9}, {3.35742855921875*^9, 
+   3.35742857132813*^9}, {3.35818313378514*^9, 3.35818313436598*^9}, {
+   3.36244773887781*^9, 3.36244776869031*^9}, {3.36244817034656*^9, 
+   3.36244817062781*^9}, {3.36951297854688*^9, 3.36951298003125*^9}, {
+   3.3839155679511156`*^9, 3.3839155685761156`*^9}, 3.7331802128999968`*^9, {
+   3.778430830421362*^9, 3.778430966698813*^9}, {3.778430998668227*^9, 
+   3.778430999029628*^9}, {3.77843103707062*^9, 3.7784310461463013`*^9}},
+ FormatType->"TextForm",
+ CellID->1496021318,ExpressionUUID->"e575e2a6-5485-462d-aef9-57b02a7de3fb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{"Plot", "[", 
+     RowBox[{"fun", ",", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "0", ",", "xmax"}], "}"}], ",", 
+      RowBox[{"Mesh", "->", "All"}], ",", 
+      RowBox[{"MeshStyle", "->", 
+       RowBox[{"Directive", "[", 
+        RowBox[{"Red", ",", 
+         RowBox[{"PointSize", "[", "0.012", "]"}]}], "]"}]}], ",", 
+      RowBox[{"PlotPoints", "->", "n"}], ",", 
+      RowBox[{"MaxRecursion", "->", "m"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"fun", ",", 
+        RowBox[{"Sin", "[", "x", "]"}], ",", "\"\<function to plot\>\""}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Sin", "[", "x", "]"}], ",", 
+        RowBox[{"Tan", "[", "x", "]"}], ",", 
+        RowBox[{"Sin", "[", 
+         RowBox[{"Tan", "[", "x", "]"}], "]"}], ",", 
+        RowBox[{"Abs", "[", 
+         RowBox[{"Sqrt", "[", 
+          RowBox[{"Sin", "[", "x", "]"}], "]"}], "]"}]}], "}"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"xmax", ",", "10", ",", "\"\<range of plot\>\""}], "}"}], ",", 
+      "1", ",", "40"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"n", ",", "50", ",", "\"\<initial number of points\>\""}], 
+       "}"}], ",", "2", ",", "100", ",", "1"}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"m", ",", "6", ",", "\"\<maximum subdivision level\>\""}], 
+       "}"}], ",", "0", ",", "8", ",", "1"}], "}"}], ",", " ", 
+    RowBox[{"AutorunSequencing", "->", 
+     RowBox[{"{", 
+      RowBox[{"2", ",", "3", ",", "4"}], "}"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.35415280193427*^9, 3.35415283120027*^9}, {
+   3.35415286735699*^9, 3.35415302670278*^9}, {3.35415315682944*^9, 
+   3.35415318028287*^9}, {3.35415321147077*^9, 3.35415327573721*^9}, {
+   3.35415330730012*^9, 3.35415332578473*^9}, {3.35415349792756*^9, 
+   3.35415357163163*^9}, {3.35415369574259*^9, 3.35415369830512*^9}, {
+   3.35733197835938*^9, 3.35733197851563*^9}, {3.35742855921875*^9, 
+   3.35742857132813*^9}, {3.35818313378514*^9, 3.35818313436598*^9}, {
+   3.36244773887781*^9, 3.36244776869031*^9}, {3.36244817034656*^9, 
+   3.36244817062781*^9}, {3.36951297854688*^9, 3.36951298003125*^9}, {
+   3.3839155679511156`*^9, 3.3839155685761156`*^9}, 3.7331802128999968`*^9, {
+   3.778430830421362*^9, 
+   3.778430836395007*^9}},ExpressionUUID->"4d900f12-0f4c-4554-86df-\
+4df721d906b7"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`fun$$ = Abs[
+      Sin[$CellContext`x]]^Rational[1, 2], $CellContext`m$$ = 
+    3, $CellContext`n$$ = 9, $CellContext`xmax$$ = 4.550000000000001, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`fun$$], 
+       Sin[$CellContext`x], "function to plot"}, {
+       Sin[$CellContext`x], 
+       Tan[$CellContext`x], 
+       Sin[
+        Tan[$CellContext`x]], Abs[
+         Sin[$CellContext`x]]^Rational[1, 2]}}, {{
+       Hold[$CellContext`xmax$$], 10, "range of plot"}, 1, 40}, {{
+       Hold[$CellContext`n$$], 50, "initial number of points"}, 2, 100, 1}, {{
+      
+       Hold[$CellContext`m$$], 6, "maximum subdivision level"}, 0, 8, 1}}, 
+    Typeset`size$$ = {360., {109., 113.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`fun$34220$$ = 0, $CellContext`xmax$34221$$ = 
+    0, $CellContext`n$34222$$ = 0, $CellContext`m$34223$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`fun$$ = 
+        Sin[$CellContext`x], $CellContext`m$$ = 6, $CellContext`n$$ = 
+        50, $CellContext`xmax$$ = 10}, "ControllerVariables" :> {
+        Hold[$CellContext`fun$$, $CellContext`fun$34220$$, 0], 
+        Hold[$CellContext`xmax$$, $CellContext`xmax$34221$$, 0], 
+        Hold[$CellContext`n$$, $CellContext`n$34222$$, 0], 
+        Hold[$CellContext`m$$, $CellContext`m$34223$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[$CellContext`fun$$, {$CellContext`x, 0, $CellContext`xmax$$}, Mesh -> 
+        All, MeshStyle -> Directive[Red, 
+          PointSize[0.012]], PlotPoints -> $CellContext`n$$, 
+        MaxRecursion -> $CellContext`m$$], 
+      "Specifications" :> {{{$CellContext`fun$$, 
+          Sin[$CellContext`x], "function to plot"}, {
+          Sin[$CellContext`x], 
+          Tan[$CellContext`x], 
+          Sin[
+           Tan[$CellContext`x]], Abs[
+            Sin[$CellContext`x]]^Rational[1, 2]}}, {{$CellContext`xmax$$, 10, 
+          "range of plot"}, 1, 
+         40}, {{$CellContext`n$$, 50, "initial number of points"}, 2, 100, 
+         1}, {{$CellContext`m$$, 6, "maximum subdivision level"}, 0, 8, 1}}, 
+      "Options" :> {AutorunSequencing -> {2, 3, 4}}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{405., {197., 203.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.733180212900612*^9},
+ CellID->683697159,ExpressionUUID->"9b4206e4-055c-403c-a31d-2983c1752314"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Cell", "[", 
+   RowBox[{"CellGroupData", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Cell", "[", 
+        RowBox[{
+         RowBox[{"BoxData", "[", 
+          RowBox[{"RowBox", "[", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Manipulate\>\"", ",", "\"\<[\>\"", ",", 
+             RowBox[{"RowBox", "[", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<Plot\>\"", ",", "\"\<[\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<fun\>\"", ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<x\>\"", ",", "\"\<,\>\"", ",", "\"\<0\>\"", ",", 
+                    "\"\<,\>\"", ",", "\"\<xmax\>\""}], "}"}], "]"}], ",", 
+                    "\"\<}\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Mesh\>\"", ",", "\"\<->\>\"", ",", "\"\<All\>\""}], 
+                    "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<MeshStyle\>\"", ",", "\"\<->\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Directive\>\"", ",", "\"\<[\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Red\>\"", ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<PointSize\>\"", ",", "\"\<[\>\"", ",", 
+                    "\"\<0.012\>\"", ",", "\"\<]\>\""}], "}"}], "]"}]}], 
+                    "}"}], "]"}], ",", "\"\<]\>\""}], "}"}], "]"}]}], "}"}], 
+                    "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<PlotPoints\>\"", ",", "\"\<->\>\"", ",", 
+                    "\"\<n\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<MaxRecursion\>\"", ",", "\"\<->\>\"", ",", 
+                    "\"\<m\>\""}], "}"}], "]"}]}], "}"}], "]"}], ",", 
+                   "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<{\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<fun\>\"", ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Sin\>\"", ",", "\"\<[\>\"", ",", "\"\<x\>\"", ",", 
+                    "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    "\"\<\\\"\\<function to plot\\>\\\"\>\""}], "}"}], "]"}], 
+                    ",", "\"\<}\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Sin\>\"", ",", "\"\<[\>\"", ",", "\"\<x\>\"", ",", 
+                    "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Tan\>\"", ",", "\"\<[\>\"", ",", "\"\<x\>\"", ",", 
+                    "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Sin\>\"", ",", "\"\<[\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Tan\>\"", ",", "\"\<[\>\"", ",", "\"\<x\>\"", ",", 
+                    "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<]\>\""}], "}"}], 
+                    "]"}], ",", "\"\<,\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Abs\>\"", ",", "\"\<[\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<Sqrt\>\"", ",", "\"\<[\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<Sin\>\"", ",", "\"\<[\>\"", ",", "\"\<x\>\"", ",", 
+                    "\"\<]\>\""}], "}"}], "]"}], ",", "\"\<]\>\""}], "}"}], 
+                    "]"}], ",", "\"\<]\>\""}], "}"}], "]"}]}], "}"}], "]"}], 
+                    ",", "\"\<}\>\""}], "}"}], "]"}]}], "}"}], "]"}], ",", 
+                   "\"\<}\>\""}], "}"}], "]"}], ",", "\"\<,\>\"", ",", 
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<{\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<xmax\>\"", ",", "\"\<,\>\"", ",", "\"\<10\>\"", ",", 
+                    "\"\<,\>\"", ",", "\"\<\\\"\\<range of plot\\>\\\"\>\""}],
+                     "}"}], "]"}], ",", "\"\<}\>\""}], "}"}], "]"}], ",", 
+                    "\"\<,\>\"", ",", "\"\<1\>\"", ",", "\"\<,\>\"", ",", 
+                    "\"\<40\>\""}], "}"}], "]"}], ",", "\"\<}\>\""}], "}"}], 
+                 "]"}], ",", "\"\<,\>\"", ",", 
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<{\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<n\>\"", ",", "\"\<,\>\"", ",", "\"\<50\>\"", ",", 
+                    "\"\<,\>\"", ",", 
+                    "\"\<\\\"\\<initial number of points\\>\\\"\>\""}], "}"}],
+                     "]"}], ",", "\"\<}\>\""}], "}"}], "]"}], ",", 
+                    "\"\<,\>\"", ",", "\"\<2\>\"", ",", "\"\<,\>\"", ",", 
+                    "\"\<100\>\"", ",", "\"\<,\>\"", ",", "\"\<1\>\""}], 
+                    "}"}], "]"}], ",", "\"\<}\>\""}], "}"}], "]"}], ",", 
+                "\"\<,\>\"", ",", 
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<{\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<m\>\"", ",", "\"\<,\>\"", ",", "\"\<6\>\"", ",", 
+                    "\"\<,\>\"", ",", 
+                    "\"\<\\\"\\<maximum subdivision level\\>\\\"\>\""}], 
+                    "}"}], "]"}], ",", "\"\<}\>\""}], "}"}], "]"}], ",", 
+                    "\"\<,\>\"", ",", "\"\<0\>\"", ",", "\"\<,\>\"", ",", 
+                    "\"\<8\>\"", ",", "\"\<,\>\"", ",", "\"\<1\>\""}], "}"}], 
+                    "]"}], ",", "\"\<}\>\""}], "}"}], "]"}], ",", "\"\<,\>\"",
+                 ",", "\"\< \>\"", ",", 
+                RowBox[{"RowBox", "[", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<AutorunSequencing\>\"", ",", "\"\<->\>\"", ",", 
+                   RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"\"\<{\>\"", ",", 
+                    RowBox[{"RowBox", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "\"\<2\>\"", ",", "\"\<,\>\"", ",", "\"\<3\>\"", ",", 
+                    "\"\<,\>\"", ",", "\"\<4\>\""}], "}"}], "]"}], ",", 
+                    "\"\<}\>\""}], "}"}], "]"}]}], "}"}], "]"}]}], "}"}], 
+              "]"}], ",", "\"\<]\>\""}], "}"}], "]"}], "]"}], ",", 
+         "\"\<Input\>\"", ",", 
+         RowBox[{"CellChangeTimes", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"3.35415280193427*^9", ",", "3.35415283120027*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415286735699*^9", ",", "3.35415302670278*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415315682944*^9", ",", "3.35415318028287*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415321147077*^9", ",", "3.35415327573721*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415330730012*^9", ",", "3.35415332578473*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415349792756*^9", ",", "3.35415357163163*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35415369574259*^9", ",", "3.35415369830512*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35733197835938*^9", ",", "3.35733197851563*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35742855921875*^9", ",", "3.35742857132813*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.35818313378514*^9", ",", "3.35818313436598*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.36244773887781*^9", ",", "3.36244776869031*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.36244817034656*^9", ",", "3.36244817062781*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"3.36951297854688*^9", ",", "3.36951298003125*^9"}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+             "3.3839155679511156`*^9", ",", "3.3839155685761156`*^9"}], "}"}],
+             ",", "3.7331802128999968`*^9"}], "}"}]}], ",", 
+         RowBox[{"CellID", "\[Rule]", "1496021318"}]}], "]"}], ",", 
+       RowBox[{"Cell", "[", 
+        RowBox[{
+         RowBox[{"BoxData", "[", 
+          RowBox[{"TagBox", "[", 
+           RowBox[{
+            RowBox[{"StyleBox", "[", 
+             RowBox[{
+              RowBox[{"DynamicModuleBox", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"$CellContext`fun$$", "=", 
+                   RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], "]"}], "^", 
+                    RowBox[{"Rational", "[", 
+                    RowBox[{"1", ",", "2"}], "]"}]}]}], ",", 
+                  RowBox[{"$CellContext`m$$", "=", "6"}], ",", 
+                  RowBox[{"$CellContext`n$$", "=", "50"}], ",", 
+                  RowBox[{"$CellContext`xmax$$", "=", "10"}], ",", 
+                  RowBox[{"Typeset`show$$", "=", "True"}], ",", 
+                  RowBox[{"Typeset`bookmarkList$$", "=", 
+                   RowBox[{"{", "}"}]}], ",", 
+                  RowBox[{"Typeset`bookmarkMode$$", "=", "\"\<Menu\>\""}], 
+                  ",", "Typeset`animator$$", ",", 
+                  RowBox[{"Typeset`animvar$$", "=", "1"}], ",", 
+                  RowBox[{"Typeset`name$$", "=", "\"\<\\\"untitled\\\"\>\""}],
+                   ",", 
+                  RowBox[{"Typeset`specs$$", "=", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Hold", "[", "$CellContext`fun$$", "]"}], ",", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], ",", 
+                    "\"\<function to plot\>\""}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], ",", 
+                    RowBox[{"Tan", "[", "$CellContext`x", "]"}], ",", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"Tan", "[", "$CellContext`x", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], "]"}], "^", 
+                    RowBox[{"Rational", "[", 
+                    RowBox[{"1", ",", "2"}], "]"}]}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Hold", "[", "$CellContext`xmax$$", "]"}], ",", 
+                    "10", ",", "\"\<range of plot\>\""}], "}"}], ",", "1", 
+                    ",", "40"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Hold", "[", "$CellContext`n$$", "]"}], ",", "50",
+                     ",", "\"\<initial number of points\>\""}], "}"}], ",", 
+                    "2", ",", "100", ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Hold", "[", "$CellContext`m$$", "]"}], ",", "6", 
+                    ",", "\"\<maximum subdivision level\>\""}], "}"}], ",", 
+                    "0", ",", "8", ",", "1"}], "}"}]}], "}"}]}], ",", 
+                  RowBox[{"Typeset`size$$", "=", 
+                   RowBox[{"{", 
+                    RowBox[{"360.", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"112.", ",", "116."}], "}"}]}], "}"}]}], ",", 
+                  RowBox[{"Typeset`update$$", "=", "0"}], ",", 
+                  "Typeset`initDone$$", ",", 
+                  RowBox[{"Typeset`skipInitDone$$", "=", "True"}], ",", 
+                  RowBox[{"$CellContext`fun$34220$$", "=", "0"}], ",", 
+                  RowBox[{"$CellContext`xmax$34221$$", "=", "0"}], ",", 
+                  RowBox[{"$CellContext`n$34222$$", "=", "0"}], ",", 
+                  RowBox[{"$CellContext`m$34223$$", "=", "0"}]}], "}"}], ",", 
+                
+                RowBox[{"DynamicBox", "[", 
+                 RowBox[{
+                  RowBox[{"Manipulate`ManipulateBoxes", "[", 
+                   RowBox[{"1", ",", "StandardForm", ",", 
+                    RowBox[{"\"\<Variables\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"$CellContext`fun$$", "=", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}]}], ",", 
+                    RowBox[{"$CellContext`m$$", "=", "6"}], ",", 
+                    RowBox[{"$CellContext`n$$", "=", "50"}], ",", 
+                    RowBox[{"$CellContext`xmax$$", "=", "10"}]}], "}"}]}], 
+                    ",", 
+                    RowBox[{"\"\<ControllerVariables\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Hold", "[", 
+                    RowBox[{
+                    "$CellContext`fun$$", ",", "$CellContext`fun$34220$$", 
+                    ",", "0"}], "]"}], ",", 
+                    RowBox[{"Hold", "[", 
+                    RowBox[{
+                    "$CellContext`xmax$$", ",", "$CellContext`xmax$34221$$", 
+                    ",", "0"}], "]"}], ",", 
+                    RowBox[{"Hold", "[", 
+                    RowBox[{
+                    "$CellContext`n$$", ",", "$CellContext`n$34222$$", ",", 
+                    "0"}], "]"}], ",", 
+                    RowBox[{"Hold", "[", 
+                    RowBox[{
+                    "$CellContext`m$$", ",", "$CellContext`m$34223$$", ",", 
+                    "0"}], "]"}]}], "}"}]}], ",", 
+                    RowBox[{"\"\<OtherVariables\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "Typeset`show$$", ",", "Typeset`bookmarkList$$", ",", 
+                    "Typeset`bookmarkMode$$", ",", "Typeset`animator$$", ",", 
+                    "Typeset`animvar$$", ",", "Typeset`name$$", ",", 
+                    "Typeset`specs$$", ",", "Typeset`size$$", ",", 
+                    "Typeset`update$$", ",", "Typeset`initDone$$", ",", 
+                    "Typeset`skipInitDone$$"}], "}"}]}], ",", 
+                    RowBox[{"\"\<Body\>\"", "\[RuleDelayed]", 
+                    RowBox[{"Plot", "[", 
+                    RowBox[{"$CellContext`fun$$", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "$CellContext`x", ",", "0", ",", "$CellContext`xmax$$"}], 
+                    "}"}], ",", 
+                    RowBox[{"Mesh", "\[Rule]", "All"}], ",", 
+                    RowBox[{"MeshStyle", "\[Rule]", 
+                    RowBox[{"Directive", "[", 
+                    RowBox[{"Red", ",", 
+                    RowBox[{"PointSize", "[", "0.012", "]"}]}], "]"}]}], ",", 
+                    
+                    RowBox[{"PlotPoints", "\[Rule]", "$CellContext`n$$"}], 
+                    ",", 
+                    RowBox[{"MaxRecursion", "\[Rule]", "$CellContext`m$$"}]}],
+                     "]"}]}], ",", 
+                    RowBox[{"\"\<Specifications\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"$CellContext`fun$$", ",", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], ",", 
+                    "\"\<function to plot\>\""}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], ",", 
+                    RowBox[{"Tan", "[", "$CellContext`x", "]"}], ",", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"Tan", "[", "$CellContext`x", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"Sin", "[", "$CellContext`x", "]"}], "]"}], "^", 
+                    RowBox[{"Rational", "[", 
+                    RowBox[{"1", ",", "2"}], "]"}]}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "$CellContext`xmax$$", ",", "10", ",", 
+                    "\"\<range of plot\>\""}], "}"}], ",", "1", ",", "40"}], 
+                    "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "$CellContext`n$$", ",", "50", ",", 
+                    "\"\<initial number of points\>\""}], "}"}], ",", "2", 
+                    ",", "100", ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "$CellContext`m$$", ",", "6", ",", 
+                    "\"\<maximum subdivision level\>\""}], "}"}], ",", "0", 
+                    ",", "8", ",", "1"}], "}"}]}], "}"}]}], ",", 
+                    RowBox[{"\"\<Options\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{"AutorunSequencing", "\[Rule]", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "3", ",", "4"}], "}"}]}], "}"}]}], ",", 
+                    
+                    RowBox[{"\"\<DefaultOptions\>\"", "\[RuleDelayed]", 
+                    RowBox[{"{", 
+                    RowBox[{"ControllerLinking", "\[Rule]", "True"}], 
+                    "}"}]}]}], "]"}], ",", 
+                  RowBox[{"ImageSizeCache", "\[Rule]", 
+                   RowBox[{"{", 
+                    RowBox[{"405.", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"200.", ",", "206."}], "}"}]}], "}"}]}], ",", 
+                  RowBox[{"SingleEvaluation", "\[Rule]", "True"}]}], "]"}], 
+                ",", 
+                RowBox[{"Deinitialization", "\[RuleDelayed]", "None"}], ",", 
+                RowBox[{"DynamicModuleValues", "\[RuleDelayed]", 
+                 RowBox[{"{", "}"}]}], ",", 
+                RowBox[{"SynchronousInitialization", "\[Rule]", "True"}], ",", 
+                RowBox[{"UnsavedVariables", "\[RuleDelayed]", 
+                 RowBox[{"{", "Typeset`initDone$$", "}"}]}], ",", 
+                RowBox[{"UntrackedVariables", "\[RuleDelayed]", 
+                 RowBox[{"{", "Typeset`size$$", "}"}]}]}], "]"}], ",", 
+              "\"\<Manipulate\>\"", ",", 
+              RowBox[{"Deployed", "\[Rule]", "True"}], ",", 
+              RowBox[{"StripOnInput", "\[Rule]", "False"}]}], "]"}], ",", 
+            RowBox[{"Manipulate`InterpretManipulate", "[", "1", "]"}]}], 
+           "]"}], "]"}], ",", "\"\<Output\>\"", ",", 
+         RowBox[{"CellChangeTimes", "\[Rule]", 
+          RowBox[{"{", "3.733180212900612*^9", "}"}]}], ",", 
+         RowBox[{"CellID", "\[Rule]", "683697159"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", "2", "}"}]}], "]"}], "]"}], "\n", 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.778306057223578*^9, 
+  3.778306057362853*^9}},ExpressionUUID->"d4d915dd-4060-4c51-9777-\
+08da9b6e2b6e"]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 270}, {Automatic, 34}},
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2597, 47, 265, "Input", "ExpressionUUID" -> \
+"e575e2a6-5485-462d-aef9-57b02a7de3fb",
+ Evaluatable->False,
+ CellID->1496021318],
+Cell[CellGroupData[{
+Cell[3180, 71, 2548, 60, 138, "Input", "ExpressionUUID" -> \
+"4d900f12-0f4c-4554-86df-4df721d906b7"],
+Cell[5731, 133, 3222, 65, 417, "Output", "ExpressionUUID" -> \
+"9b4206e4-055c-403c-a31d-2983c1752314",
+ CellID->683697159]
+}, Open  ]],
+Cell[8968, 201, 22402, 459, 2217, "Input", "ExpressionUUID" -> \
+"d4d915dd-4060-4c51-9777-08da9b6e2b6e"]
+}
+]
+*)
+

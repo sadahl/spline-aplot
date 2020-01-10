@@ -1,0 +1,1532 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     64010,       1522]
+NotebookOptionsPosition[     63534,       1502]
+NotebookOutlinePosition[     63890,       1518]
+CellTagsIndexPosition[     63847,       1515]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"deg", ">", 
+       RowBox[{"Min", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "@", "cpts"}], "-", "1"}], ",", "5"}], "]"}]}], 
+      ",", 
+      RowBox[{"deg", "=", 
+       RowBox[{"Min", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "@", "cpts"}], "-", "1"}], ",", "5"}], "]"}]}]}], 
+     "]"}], ";", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+     "Any", " ", "degree", " ", "or", " ", "control", " ", "points", " ", 
+      "change", " ", "invoke", " ", "reconfiguration", " ", "of", " ", 
+      "knots"}], " ", "*)"}], " ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"pdeg", "!=", "deg"}], "||", 
+       RowBox[{"lencpts", "!=", 
+        RowBox[{"Length", "[", "cpts", "]"}]}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"deg", "=", 
+        RowBox[{"Min", "[", 
+         RowBox[{"deg", ",", 
+          RowBox[{
+           RowBox[{"Length", "[", "cpts", "]"}], "-", "1"}]}], "]"}]}], ";", 
+       RowBox[{"knots", "=", 
+        RowBox[{"uniformknots", "[", 
+         RowBox[{"cpts", ",", "deg"}], "]"}]}], ";", 
+       RowBox[{"pdeg", "=", "deg"}], ";", 
+       RowBox[{"lencpts", "=", 
+        RowBox[{"Length", "[", "cpts", "]"}]}]}]}], "]"}], ";", " ", " ", 
+    RowBox[{"(*", " ", 
+     RowBox[{"Main", " ", "graphics"}], " ", "*)"}], " ", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"view", "===", "1"}], ",", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"View", " ", "curve"}], " ", "*)"}], " ", 
+      RowBox[{"Graphics", "[", 
+       RowBox[{
+        RowBox[{"{", " ", 
+         RowBox[{"(*", " ", 
+          RowBox[{"Control", " ", "points", " ", "labels"}], " ", "*)"}], " ", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Switch", "[", 
+             RowBox[{"i", ",", " ", "1", ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"i", ",", "White"}], "]"}], ",", 
+                RowBox[{"Offset", "[", 
+                 RowBox[{
+                  RowBox[{"20", 
+                   RowBox[{"Normalize", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "cpts", "\[LeftDoubleBracket]", "1", 
+                    "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{
+                    "cpts", "\[LeftDoubleBracket]", "2", 
+                    "\[RightDoubleBracket]"}]}], "]"}]}], ",", 
+                  RowBox[{
+                  "cpts", "\[LeftDoubleBracket]", "i", 
+                   "\[RightDoubleBracket]"}]}], "]"}]}], "]"}], ",", " ", 
+              RowBox[{"Length", "[", "cpts", "]"}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"i", ",", "White"}], "]"}], ",", 
+                RowBox[{"Offset", "[", 
+                 RowBox[{
+                  RowBox[{"20", 
+                   RowBox[{"Normalize", "[", 
+                    RowBox[{
+                    RowBox[{"cpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"-", "1"}], "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{"cpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"-", "2"}], "\[RightDoubleBracket]"}]}], "]"}]}], 
+                  ",", 
+                  RowBox[{"cpts", "\[LeftDoubleBracket]", 
+                   RowBox[{"-", "1"}], "\[RightDoubleBracket]"}]}], "]"}]}], 
+               "]"}], ",", " ", "_", ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"i", ",", "White"}], "]"}], ",", " ", 
+                RowBox[{"Offset", "[", 
+                 RowBox[{
+                  RowBox[{"20", 
+                   RowBox[{"Normalize", "[", 
+                    RowBox[{
+                    RowBox[{"Normalize", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "cpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{"cpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}]}], 
+                    "]"}], "+", 
+                    RowBox[{"Normalize", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "cpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{"cpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]}], 
+                    "]"}]}], "]"}]}], ",", 
+                  RowBox[{
+                  "cpts", "\[LeftDoubleBracket]", "i", 
+                   "\[RightDoubleBracket]"}]}], "]"}]}], "]"}]}], " ", "]"}], 
+            ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "cpts", "]"}]}], "}"}]}], "]"}], ",", 
+          " ", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{"Control", " ", "polygon"}], " ", "*)"}], " ", 
+          RowBox[{"If", "[", 
+           RowBox[{"cnet", ",", 
+            RowBox[{"{", 
+             RowBox[{"Yellow", ",", 
+              RowBox[{"Opacity", "[", ".9", "]"}], ",", 
+              RowBox[{"ControlNets", "[", "cpts", "]"}]}], "}"}], ",", 
+            RowBox[{"{", "}"}]}], "]"}], ",", " ", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{"B", "-", 
+            RowBox[{"spline", " ", "curve"}]}], " ", "*)"}], " ", "White", 
+          ",", 
+          RowBox[{"AbsoluteThickness", "[", "2", "]"}], ",", " ", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"OrderedQ", "[", "knots", "]"}], ",", " ", 
+            RowBox[{"PlotBSplineCurve", "[", 
+             RowBox[{"cpts", ",", "knots", ",", "deg", ",", "kpts"}], "]"}], 
+            ",", " ", 
+            RowBox[{
+             RowBox[{"Do", "[", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"knots", "\[LeftDoubleBracket]", 
+                   RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}], ">", 
+                  RowBox[{
+                  "knots", "\[LeftDoubleBracket]", "i", 
+                   "\[RightDoubleBracket]"}]}], ",", 
+                 RowBox[{
+                  RowBox[{"knots", "\[LeftDoubleBracket]", 
+                   RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}], "=", 
+                  RowBox[{
+                  "knots", "\[LeftDoubleBracket]", "i", 
+                   "\[RightDoubleBracket]"}]}]}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", "2", ",", 
+                 RowBox[{"Length", "[", "knots", "]"}]}], "}"}]}], "]"}], ";", 
+             RowBox[{"PlotBSplineCurve", "[", 
+              RowBox[{"cpts", ",", "knots", ",", "deg", ",", "kpts"}], 
+              "]"}]}]}], " ", "]"}]}], " ", "}"}], ",", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", ".5"}], ",", "2.5"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", ".5"}], ",", "1.5"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotRangePadding", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Scaled", "[", ".02", "]"}], ",", 
+             RowBox[{"Scaled", "[", ".02", "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Scaled", "[", ".06", "]"}], ",", 
+             RowBox[{"Scaled", "[", ".02", "]"}]}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"400", ",", "280"}], "}"}]}], ",", 
+        RowBox[{"Frame", "->", "False"}], ",", 
+        RowBox[{"GridLines", "->", "Automatic"}], ",", 
+        RowBox[{"GridLinesStyle", "->", 
+         RowBox[{"Directive", "[", 
+          RowBox[{"Gray", ",", "Dashed"}], "]"}]}], ",", 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"Inset", "[", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               RowBox[{"\"\<knot vector: \>\"", ",", 
+                RowBox[{"knots", "/.", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"0.", "->", "0"}], ",", 
+                   RowBox[{"1.", "->", "1"}]}], "}"}]}]}], "}"}], "]"}], ",", 
+             "11", ",", "White", ",", "\"\<SmallText\>\""}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"Center", ",", "Bottom"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"Center", ",", "Bottom"}], "}"}]}], "]"}]}], ",", 
+        RowBox[{"Background", "->", 
+         RowBox[{"Hue", "[", 
+          RowBox[{
+           FractionBox["2", "3"], ",", ".5", ",", ".5"}], "]"}]}]}], "]"}], 
+      ",", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"View", " ", "basis", " ", "functions"}], " ", "*)"}], " ", 
+      RowBox[{"Show", "[", " ", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"OrderedQ", "[", "knots", "]"}], ",", " ", 
+          RowBox[{"PlotBSplineBasis", "[", 
+           RowBox[{"knots", ",", "deg"}], "]"}], ",", " ", 
+          RowBox[{
+           RowBox[{"Do", "[", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}], ">", 
+                RowBox[{
+                "knots", "\[LeftDoubleBracket]", "i", 
+                 "\[RightDoubleBracket]"}]}], ",", 
+               RowBox[{
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "-", "1"}], "\[RightDoubleBracket]"}], "=", 
+                RowBox[{
+                "knots", "\[LeftDoubleBracket]", "i", 
+                 "\[RightDoubleBracket]"}]}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "2", ",", 
+               RowBox[{"Length", "[", "knots", "]"}]}], "}"}]}], "]"}], ";", 
+           RowBox[{"PlotBSplineBasis", "[", 
+            RowBox[{"knots", ",", "deg"}], "]"}]}]}], "]"}], ",", " ", 
+        RowBox[{"ImageSize", "->", 
+         RowBox[{"{", 
+          RowBox[{"400", ",", "280"}], "}"}]}], ",", 
+        RowBox[{"ImagePadding", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"30", ",", "30"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"20", ",", "20"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"Background", "->", 
+         RowBox[{"Hue", "[", 
+          RowBox[{
+           FractionBox["2", "3"], ",", ".5", ",", ".5"}], "]"}]}], ",", " ", 
+        RowBox[{"PlotRangeClipping", "->", "False"}], ",", 
+        RowBox[{"GridLines", "->", 
+         RowBox[{"{", 
+          RowBox[{"None", ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "10.2", ",", "10.4", ",", "10.6", ",", "10.8", ",", "11"}], 
+            "}"}]}], "}"}]}], ",", 
+        RowBox[{"GridLinesStyle", "->", 
+         RowBox[{"Directive", "[", 
+          RowBox[{"Dotted", ",", "Gray"}], "]"}]}], ",", 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"xpts", "=", 
+             RowBox[{"Union", "[", 
+              RowBox[{"N", "[", 
+               RowBox[{"knots", "\[LeftDoubleBracket]", 
+                RowBox[{
+                 RowBox[{"deg", "+", "1"}], ";;", 
+                 RowBox[{
+                  RowBox[{"Length", "[", "knots", "]"}], "-", "deg"}]}], 
+                "\[RightDoubleBracket]"}], "]"}], "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"AbsolutePointSize", "[", "5", "]"}], ",", "Red", ",", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"Tooltip", "[", 
+                RowBox[{
+                 RowBox[{"Point", "[", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}], ",", "10"}], "}"}], "]"}], ",", 
+                 RowBox[{
+                 "xpts", "\[LeftDoubleBracket]", "i", 
+                  "\[RightDoubleBracket]"}]}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"i", ",", 
+                 RowBox[{"Length", "[", "xpts", "]"}]}], "}"}]}], "]"}]}], 
+            "}"}]}], "]"}]}]}], "]"}]}], " ", "]"}]}], ",", " ", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cpts", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"0.5", ",", "1"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"1.5", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "0"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", ",", "1"}], "}"}]}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"-", ".5"}], ",", 
+       RowBox[{"-", ".5"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"2.5", ",", "1.5"}], "}"}], ",", "Locator", ",", 
+     RowBox[{"LocatorAutoCreate", "->", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "12"}], "}"}]}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"deg", ",", "2", ",", "\"\<degree\>\""}], "}"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", 
+       RowBox[{"Min", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "@", "cpts"}], "-", "1"}], ",", "5"}], "]"}]}], 
+      "]"}], ",", 
+     RowBox[{"ControlType", "->", "RadioButtonBar"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cnet", ",", "True", ",", "\"\<control polygon\>\""}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"kpts", ",", "True", ",", "\"\<knots on curve\>\""}], "}"}], 
+     ",", 
+     RowBox[{"{", 
+      RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"view", ",", "1", ",", "\"\<view\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\< curve \>\""}], ",", 
+       RowBox[{"2", "->", "\"\< basis functions \>\""}]}], "}"}]}], "}"}], 
+   ",", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Dummy", " ", "control", " ", "for", " ", "button", " ", "panel"}], " ", 
+    "*)"}], " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"dummy", ",", ",", "\"\<control points\>\""}], "}"}], ",", "1", 
+     ",", 
+     RowBox[{"Dynamic", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Spacer", "[", "10", "]"}], ",", " ", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<delete last\>\"", ",", 
+              RowBox[{
+               RowBox[{"cpts", "=", 
+                RowBox[{"Most", "[", "cpts", "]"}]}], ";", 
+               RowBox[{"knots", "=", 
+                RowBox[{"uniformknots", "[", 
+                 RowBox[{"cpts", ",", "deg"}], "]"}]}]}], ",", 
+              RowBox[{"Enabled", "->", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"Length", "[", "cpts", "]"}], ">", "4"}], ")"}]}]}], 
+             "]"}], ",", " ", 
+            RowBox[{"Spacer", "[", "10", "]"}], ",", " ", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<reset all\>\"", ",", 
+              RowBox[{
+               RowBox[{"cpts", "=", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "1"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0.5", ",", "1"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"1.5", ",", "0"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "0"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"2", ",", "1"}], "}"}]}], "}"}]}], ";", 
+               RowBox[{"knots", "=", 
+                RowBox[{"uniformknots", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "1"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "1"}], "}"}]}], "}"}], ",", "2"}], 
+                 "]"}]}], ";", 
+               RowBox[{"deg", "=", "2"}]}]}], "]"}]}], "}"}], "]"}], ")"}], 
+        "&"}], ",", 
+       RowBox[{"SynchronousUpdating", "->", "False"}]}], "]"}], ",", 
+     RowBox[{"ControlPlacement", "->", "Bottom"}]}], "}"}], ",", " ", 
+   "Delimiter", ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"knots", ",", 
+       RowBox[{"uniformknots", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "1"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", "0"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"2", ",", "1"}], "}"}]}], "}"}], ",", "2"}], "]"}], ",", 
+       "\"\<knot control\>\""}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"knotslider", "[", 
+       RowBox[{"knots", ",", "deg"}], "]"}], "&"}], ",", 
+     RowBox[{"ControlPlacement", "->", "Bottom"}]}], "}"}], ",", " ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"To", " ", "track", " ", "variable", " ", "changes"}], " ", 
+    "*)"}], " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"pdeg", ",", "2"}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "None"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"lencpts", ",", "6"}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "None"}]}], "}"}], ",", " ", 
+   RowBox[{"AutorunSequencing", "->", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "5"}], "}"}]}], ",", " ", 
+   RowBox[{"TrackedSymbols", ":>", 
+    RowBox[{"{", 
+     RowBox[{
+     "cpts", ",", "deg", ",", "cnet", ",", "kpts", ",", "view", ",", "knots", 
+      ",", "pdeg", ",", "lencpts"}], "}"}]}], ",", " ", 
+   RowBox[{"SynchronousInitialization", "->", "False"}], ",", " ", 
+   RowBox[{"Initialization", ":>", 
+    RowBox[{"(", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "Some", " ", "utility", " ", "function", " ", "for", " ", "zero", " ", 
+        "division"}], ",", " ", 
+       RowBox[{"zero", " ", "power"}]}], " ", "*)"}], " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"DivZ", "[", 
+        RowBox[{"s_", ",", 
+         RowBox[{"t_", "/;", 
+          RowBox[{"t", "==", "0"}]}]}], "]"}], ":=", "0."}], ";", " ", 
+      RowBox[{
+       RowBox[{"DivZ", "[", 
+        RowBox[{"s_", ",", "t_"}], "]"}], ":=", 
+       RowBox[{"N", "[", 
+        FractionBox["s", "t"], "]"}]}], ";", " ", 
+      RowBox[{
+       RowBox[{"PowerZ", "[", 
+        RowBox[{
+         RowBox[{"x_", "/;", 
+          RowBox[{"x", "==", "0"}]}], ",", 
+         RowBox[{"y_", "/;", 
+          RowBox[{"y", "==", "0"}]}]}], "]"}], " ", ":=", " ", "1."}], ";", 
+      " ", " ", 
+      RowBox[{
+       RowBox[{"PowerZ", "[", 
+        RowBox[{"x_", ",", " ", "y_"}], "]"}], " ", ":=", " ", 
+       RowBox[{"N", "[", 
+        SuperscriptBox["x", "y"], "]"}]}], ";", " ", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"B", "-", 
+        RowBox[{"spline", " ", "basis", " ", "function"}]}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"iBSplineBasis", "[", 
+        RowBox[{"i_", ",", "0", ",", "knots_"}], "]"}], ":=", 
+       RowBox[{"Function", "[", 
+        RowBox[{
+         RowBox[{"{", "t", "}"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+              "knots", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}],
+               "<=", "t", "<", 
+              RowBox[{"knots", "\[LeftDoubleBracket]", 
+               RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]}], ")"}], "||", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"t", "==", "1."}], "&&", 
+              RowBox[{
+               RowBox[{"knots", "\[LeftDoubleBracket]", 
+                RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "==", 
+               "1."}]}], ")"}]}], ",", "1.", ",", "0."}], "]"}]}], "]"}]}], 
+      ";", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{"Piecewise", " ", "looks", " ", "pretty"}], ",", " ", 
+        RowBox[{
+        "but", " ", "a", " ", "tad", " ", "slower", " ", "than", " ", 
+         RowBox[{
+          RowBox[{"If", "[", "]"}], ".", " ", "It"}], " ", "is", " ", "here", 
+         " ", "forr", " ", "the", " ", "reference"}]}], " ", "*)"}], " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"iBSplineBasis", "[", 
+          RowBox[{"i_", ",", "0", ",", "knots_"}], "]"}], ":=", 
+         RowBox[{"Function", "[", 
+          RowBox[{
+           RowBox[{"{", "t", "}"}], ",", 
+           RowBox[{"Piecewise", "[", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"1.", ",", 
+                RowBox[{
+                 RowBox[{
+                 "knots", "\[LeftDoubleBracket]", "i", 
+                  "\[RightDoubleBracket]"}], "<=", "t", "<", 
+                 RowBox[{"knots", "\[LeftDoubleBracket]", 
+                  RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]}]}], 
+               "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"1.", ",", 
+                RowBox[{
+                 RowBox[{"t", "==", "1."}], "&&", 
+                 RowBox[{
+                  RowBox[{"knots", "\[LeftDoubleBracket]", 
+                   RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "==", 
+                  "1."}]}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0.", ",", "True"}], "}"}]}], "}"}], "]"}]}], "]"}]}], 
+        ";"}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"iBSplineBasis", "[", 
+        RowBox[{"i_", ",", "k_", ",", "knots_"}], "]"}], ":=", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"l", "=", 
+            RowBox[{"k", "-", "1"}]}], ",", 
+           RowBox[{"j", "=", 
+            RowBox[{"i", "+", "1"}]}]}], "}"}], ",", 
+         RowBox[{"Function", "[", 
+          RowBox[{
+           RowBox[{"{", "t", "}"}], ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"DivZ", "[", 
+              RowBox[{
+               RowBox[{"t", "-", 
+                RowBox[{
+                "knots", "\[LeftDoubleBracket]", "i", 
+                 "\[RightDoubleBracket]"}]}], ",", 
+               RowBox[{
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "+", "k"}], "\[RightDoubleBracket]"}], "-", 
+                RowBox[{
+                "knots", "\[LeftDoubleBracket]", "i", 
+                 "\[RightDoubleBracket]"}]}]}], "]"}], " ", 
+             RowBox[{
+              RowBox[{"iBSplineBasis", "[", 
+               RowBox[{"i", ",", "l", ",", "knots"}], "]"}], "[", "t", 
+              "]"}]}], "+", 
+            RowBox[{
+             RowBox[{"DivZ", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "+", "k", "+", "1"}], "\[RightDoubleBracket]"}],
+                 "-", "t"}], ",", 
+               RowBox[{
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "+", "k", "+", "1"}], "\[RightDoubleBracket]"}],
+                 "-", 
+                RowBox[{"knots", "\[LeftDoubleBracket]", 
+                 RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}]}]}], 
+              "]"}], " ", 
+             RowBox[{
+              RowBox[{"iBSplineBasis", "[", 
+               RowBox[{"j", ",", "l", ",", "knots"}], "]"}], "[", "t", 
+              "]"}]}]}]}], "]"}]}], "]"}]}], ";", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"B", "-", 
+        RowBox[{"spline", " ", "basis", " ", "plot"}]}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"PlotBSplineBasis", "[", 
+        RowBox[{"knots_", ",", "deg_"}], "]"}], ":=", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"Evaluate", "[", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Tooltip", "[", 
+             RowBox[{
+              RowBox[{"10", "+", 
+               RowBox[{
+                RowBox[{"iBSplineBasis", "[", 
+                 RowBox[{"j", ",", "deg", ",", "knots"}], "]"}], "[", "t", 
+                "]"}]}], ",", 
+              RowBox[{"Subscript", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<N\>\"", ",", "Italic"}], "]"}], ",", 
+                RowBox[{"Row", "[", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"j", "-", "1"}], ",", "\"\<,\>\"", ",", "deg"}], 
+                  "}"}], "]"}]}], "]"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", 
+              RowBox[{
+               RowBox[{"Length", "[", "knots", "]"}], "-", "1", "-", 
+               "deg"}]}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Directive", "[", 
+             RowBox[{
+              RowBox[{"Lighter", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"ColorData", "[", "1", "]"}], "[", "j", "]"}], ",", 
+                ".5"}], "]"}], ",", "Thick"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", 
+              RowBox[{
+               RowBox[{"Length", "[", "knots", "]"}], "-", "1", "-", 
+               "deg"}]}], "}"}]}], "]"}]}], ",", 
+         RowBox[{"PlotRange", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", "1"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"10", ",", "11"}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"Exclusions", "->", "None"}], ",", " ", 
+         RowBox[{"Ticks", "->", 
+          RowBox[{"{", 
+           RowBox[{"Automatic", ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"10.2", ",", ".2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10.4", ",", ".4"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10.6", ",", ".6"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"10.8", ",", ".8"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"11", ",", "1"}], "}"}]}], "}"}]}], "}"}]}], ",", 
+         RowBox[{"AxesStyle", "->", "LightGray"}]}], "]"}]}], ";", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"B", "-", 
+        RowBox[{"spline", " ", "curve"}]}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"iBSplineCurve", "[", 
+        RowBox[{"x_", ",", "knots_"}], "]"}], ":=", " ", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"n", "=", 
+            RowBox[{"Length", "[", "x", "]"}]}], ",", 
+           RowBox[{"m", "=", 
+            RowBox[{
+             RowBox[{"Length", "[", "knots", "]"}], "-", 
+             RowBox[{"Length", "[", "x", "]"}], "-", "1"}]}]}], "}"}], ",", 
+         " ", 
+         RowBox[{"Function", "[", 
+          RowBox[{
+           RowBox[{"{", "t", "}"}], ",", 
+           RowBox[{
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"iBSplineBasis", "[", 
+                RowBox[{"i", ",", "m", ",", "knots"}], "]"}], "[", "t", "]"}],
+               ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "n"}], "}"}]}], "]"}], ".", "x"}]}], "]"}]}],
+         "\n", "  ", "]"}]}], ";", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"B", "-", 
+        RowBox[{"spline", " ", "curve", " ", "plot"}]}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"PlotBSplineCurve", "[", 
+        RowBox[{"x_", ",", "knots_", ",", "deg_", ",", "kf_"}], "]"}], ":=", 
+       RowBox[{"Module", "[", " ", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"xpts", "=", 
+            RowBox[{"Union", "[", 
+             RowBox[{"N", "[", 
+              RowBox[{"knots", "\[LeftDoubleBracket]", 
+               RowBox[{
+                RowBox[{"deg", "+", "1"}], ";;", 
+                RowBox[{
+                 RowBox[{"Length", "[", "knots", "]"}], "-", "deg"}]}], 
+               "\[RightDoubleBracket]"}], "]"}], "]"}]}], ",", " ", 
+           RowBox[{"xmulti", "=", 
+            RowBox[{"Length", "/@", 
+             RowBox[{"Split", "[", 
+              RowBox[{"N", "[", 
+               RowBox[{"knots", "\[LeftDoubleBracket]", 
+                RowBox[{
+                 RowBox[{"deg", "+", "1"}], ";;", 
+                 RowBox[{
+                  RowBox[{"Length", "[", "knots", "]"}], "-", "deg"}]}], 
+                "\[RightDoubleBracket]"}], "]"}], "]"}]}]}], ",", " ", "f", 
+           ",", "s"}], " ", "}"}], ",", " ", 
+         RowBox[{
+          RowBox[{"f", "=", 
+           RowBox[{
+            RowBox[{"iBSplineCurve", "[", 
+             RowBox[{"x", ",", "knots"}], "]"}], "[", "s", "]"}]}], ";", " ", 
+          
+          RowBox[{"{", " ", 
+           RowBox[{
+            RowBox[{"Table", "[", " ", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"If", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"xmulti", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "<=", 
+                   "deg"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"f", "/.", 
+                    RowBox[{"s", "->", "t"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"t", ",", 
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{
+                    RowBox[{"ControlActive", "[", 
+                    RowBox[{"0.25", ",", "0.05"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}]}], ")"}]}]}], "}"}]}], "]"}], 
+                   "]"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"Table", "[", 
+                    RowBox[{
+                    RowBox[{"f", "/.", 
+                    RowBox[{"s", "->", "t"}]}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"t", ",", 
+                    RowBox[{"Append", "[", 
+                    RowBox[{
+                    RowBox[{"Most", "[", 
+                    RowBox[{"Range", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], ",", 
+                    RowBox[{
+                    RowBox[{"ControlActive", "[", 
+                    RowBox[{"0.25", ",", "0.05"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "-", 
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}]}], ")"}]}]}], "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"i", "+", "1"}], "\[RightDoubleBracket]"}], "-", 
+                    "0.001"}]}], "]"}]}], "}"}]}], "]"}], "]"}]}], "]"}], ",", 
+                RowBox[{"If", "[", 
+                 RowBox[{"kf", ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Red", ",", 
+                    RowBox[{"AbsolutePointSize", "[", "5", "]"}], ",", 
+                    RowBox[{"Tooltip", "[", 
+                    RowBox[{
+                    RowBox[{"Point", "[", 
+                    RowBox[{"f", "/.", 
+                    RowBox[{"s", "->", 
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}]}]}], "]"}], ",", 
+                    RowBox[{
+                    "xpts", "\[LeftDoubleBracket]", "i", 
+                    "\[RightDoubleBracket]"}]}], "]"}]}], "}"}], ",", 
+                  RowBox[{"{", "}"}]}], "]"}]}], "}"}], ",", " ", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{
+                 RowBox[{"Length", "[", "xpts", "]"}], "-", "1"}]}], "}"}]}], 
+             "]"}], ",", " ", " ", 
+            RowBox[{"If", "[", 
+             RowBox[{"kf", ",", 
+              RowBox[{"{", 
+               RowBox[{"Red", ",", 
+                RowBox[{"AbsolutePointSize", "[", "5", "]"}], ",", 
+                RowBox[{"Tooltip", "[", 
+                 RowBox[{
+                  RowBox[{"Point", "[", 
+                   RowBox[{"f", "/.", 
+                    RowBox[{"s", "->", 
+                    RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                    RowBox[{"-", "1"}], "\[RightDoubleBracket]"}]}]}], "]"}], 
+                  ",", 
+                  RowBox[{"xpts", "\[LeftDoubleBracket]", 
+                   RowBox[{"-", "1"}], "\[RightDoubleBracket]"}]}], "]"}]}], 
+               "}"}], ",", 
+              RowBox[{"{", "}"}]}], "]"}]}], " ", "}"}]}]}], "]"}]}], ";", 
+      " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Generate", " ", "control", " ", "polygon"}], " ", "*)"}], " ", 
+      RowBox[{
+       RowBox[{"ControlNets", "[", 
+        RowBox[{"x", ":", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"_", ",", "_"}], "}"}], ".."}], "}"}]}], "]"}], ":=", 
+       RowBox[{"GraphicsComplex", "[", 
+        RowBox[{"x", ",", 
+         RowBox[{"{", 
+          RowBox[{"Line", "[", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"i", "+", "1"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{
+                RowBox[{"Length", "[", "x", "]"}], "-", "1"}]}], "}"}]}], 
+            "]"}], "]"}], "}"}]}], "]"}]}], ";", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Generate", " ", "uniform", " ", "knot", " ", "vector"}], " ", 
+       "*)"}], " ", 
+      RowBox[{
+       RowBox[{"uniformknots", "[", 
+        RowBox[{"cpts_", ",", "deg_"}], "]"}], ":=", 
+       RowBox[{"Join", "[", 
+        RowBox[{
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"0.", ",", 
+           RowBox[{"deg", "+", "1"}]}], "]"}], ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"Round", "[", 
+            RowBox[{
+             FractionBox["i", 
+              RowBox[{
+               RowBox[{"Length", "[", "cpts", "]"}], "-", "deg"}]], ",", 
+             ".01"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{
+              RowBox[{"Length", "[", "cpts", "]"}], "-", "deg", "-", "1"}]}], 
+            "}"}]}], "]"}], ",", 
+         RowBox[{"ConstantArray", "[", 
+          RowBox[{"1.", ",", 
+           RowBox[{"deg", "+", "1"}]}], "]"}]}], "]"}]}], ";", " ", " ", 
+      RowBox[{"(*", " ", 
+       RowBox[{"Custom", " ", "sliders", " ", "for", " ", "knots"}], " ", 
+       "*)"}], " ", 
+      RowBox[{
+       RowBox[{"knotslider", "[", 
+        RowBox[{"knots_", ",", "deg_"}], "]"}], ":=", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"r", "=", 
+           RowBox[{"Range", "[", 
+            RowBox[{
+             RowBox[{"deg", "+", "2"}], ",", 
+             RowBox[{
+              RowBox[{"Length", "[", "knots", "]"}], "-", "deg", "-", "1"}]}],
+             "]"}]}], "}"}], ",", " ", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"r", "===", 
+            RowBox[{"{", "}"}]}], ",", " ", 
+           RowBox[{"Grid", "[", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Spacer", "[", "3", "]"}], ",", 
+               "\"\<no knot control\>\"", ",", 
+               RowBox[{"Spacer", "[", "2", "]"}], ",", 
+               "\"\<(Be'zier curve)\>\""}], "}"}], "}"}], "]"}], ",", 
+           RowBox[{"Grid", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Spacer", "[", "3", "]"}], ",", 
+                RowBox[{"Subscript", "[", 
+                 RowBox[{
+                  RowBox[{"Style", "[", 
+                   RowBox[{"\"\<t\>\"", ",", "Italic"}], "]"}], ",", 
+                  RowBox[{"#", "-", "1"}]}], "]"}], ",", 
+                RowBox[{"Slider", "[", 
+                 RowBox[{
+                  RowBox[{"Dynamic", "@", 
+                   RowBox[{
+                   "knots", "\[LeftDoubleBracket]", "#1", 
+                    "\[RightDoubleBracket]"}]}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "1", ",", ".01"}], "}"}], ",", 
+                  RowBox[{"Appearance", "->", "\"\<UpArrow\>\""}], ",", 
+                  RowBox[{"ImageSize", "->", 
+                   RowBox[{"{", 
+                    RowBox[{"200", ",", "12"}], "}"}]}]}], "]"}], ",", 
+                RowBox[{"Dynamic", "@", 
+                 RowBox[{
+                 "knots", "\[LeftDoubleBracket]", "#1", 
+                  "\[RightDoubleBracket]"}]}]}], "}"}], "&"}], "/@", "r"}], 
+            "]"}]}], " ", "]"}]}], " ", "]"}]}], ";", " ", " ", 
+      RowBox[{"SetAttributes", "[", 
+       RowBox[{"knotslider", ",", "HoldAll"}], "]"}], ";"}], " ", ")"}]}]}], 
+  " ", "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.388465235109375*^9, 3.38846524190625*^9}, {
+   3.38846569034375*^9, 3.38846572390625*^9}, {3.388465765078125*^9, 
+   3.38846576840625*^9}, {3.38846581675*^9, 3.388465844140625*^9}, {
+   3.38846588503125*^9, 3.388465918890625*^9}, {3.3884659615625*^9, 
+   3.38846598171875*^9}, {3.38846610146875*^9, 3.388466129328125*^9}, 
+   3.3884663796875*^9, {3.388466410546875*^9, 3.388466420078125*^9}, {
+   3.3884664689375*^9, 3.38846647571875*^9}, {3.3884667315*^9, 
+   3.3884668014375*^9}, {3.388466832203125*^9, 3.388466832390625*^9}, {
+   3.3884842016875*^9, 3.388484214921875*^9}, {3.388484293234375*^9, 
+   3.388484308578125*^9}, {3.3884844386875*^9, 3.3884844390625*^9}, {
+   3.388484487078125*^9, 3.388484811953125*^9}, {3.3884848539375*^9, 
+   3.3884848639375*^9}, {3.388484900515625*^9, 3.388484945*^9}, {
+   3.388484996078125*^9, 3.388485045*^9}, {3.388485292234375*^9, 
+   3.388485333328125*^9}, {3.38848536659375*^9, 3.388485378375*^9}, {
+   3.3884854515*^9, 3.388485463125*^9}, {3.388490618373971*^9, 
+   3.3884907968549194`*^9}, {3.3884908535569553`*^9, 3.38849087155661*^9}, {
+   3.388490938836568*^9, 3.388490979882655*^9}, 3.3884915020601287`*^9, {
+   3.3884916266046124`*^9, 3.3884917467273064`*^9}, 3.38849180202312*^9, {
+   3.3884919039899116`*^9, 3.3884919059273744`*^9}, {3.3884919373798957`*^9, 
+   3.3884920427684975`*^9}, 3.3884921436415606`*^9, {3.3884921899375467`*^9, 
+   3.38849222359315*^9}, {3.388492268514163*^9, 3.388492284623228*^9}, {
+   3.388492338340947*^9, 3.3884924470576096`*^9}, {3.3884924857287416`*^9, 
+   3.3884925775863533`*^9}, {3.388492880475602*^9, 3.388493044942025*^9}, {
+   3.38849606186493*^9, 3.3884960620524263`*^9}, {3.3884965586991405`*^9, 
+   3.388496577276909*^9}, {3.388497640631492*^9, 3.388497644084551*^9}, {
+   3.388499476486868*^9, 3.388499483908601*^9}, {3.3885138129985485`*^9, 
+   3.38851387230991*^9}, {3.3885139031999416`*^9, 3.3885140490877657`*^9}, {
+   3.388514339613437*^9, 3.3885143552225122`*^9}, {3.3885144506738048`*^9, 
+   3.388514484876273*^9}, {3.3885145150788183`*^9, 3.388514579093214*^9}, {
+   3.388514609186386*^9, 3.388514656341731*^9}, {3.3885146929191537`*^9, 
+   3.3885148011514506`*^9}, 3.3885148531817017`*^9, {3.3885149294927363`*^9, 
+   3.3885149664139023`*^9}, {3.3885153825152884`*^9, 
+   3.3885154045304904`*^9}, {3.3885154791071835`*^9, 
+   3.3885155383716707`*^9}, {3.38851556991794*^9, 3.3885156668535786`*^9}, {
+   3.388515704618479*^9, 3.388515704930973*^9}, {3.3885157653673124`*^9, 
+   3.388515783007599*^9}, {3.388515815163231*^9, 3.3885158263192673`*^9}, {
+   3.3885158872712216`*^9, 3.388515906536477*^9}, {3.3885159486294184`*^9, 
+   3.38851602669042*^9}, {3.38851611182941*^9, 3.3885162352645397`*^9}, {
+   3.3885163057631865`*^9, 3.388516412417389*^9}, {3.388516487806566*^9, 
+   3.388516500228203*^9}, {3.3885172786195073`*^9, 3.3885173112438807`*^9}, {
+   3.3889367728241177`*^9, 3.3889367730741177`*^9}, {3.3889369374178677`*^9, 
+   3.3889369378866177`*^9}, {3.3889801780625*^9, 3.388980323546875*^9}, {
+   3.388981717265625*^9, 3.388981720375*^9}, {3.388982051671875*^9, 
+   3.388982078828125*^9}, {3.389021230828125*^9, 3.38902123090625*^9}, 
+   3.38902142690625*^9, {3.389021694765625*^9, 3.3890217275*^9}, {
+   3.389021770953125*^9, 3.38902186553125*^9}, {3.389022131453125*^9, 
+   3.389022131546875*^9}, {3.38902218515625*^9, 3.389022193421875*^9}, {
+   3.38902232971875*^9, 3.3890223801875*^9}, {3.389022523125*^9, 
+   3.389022549125*^9}, 3.3890227324375*^9, {3.38953738490625*^9, 
+   3.389537411171875*^9}, {3.38953748828125*^9, 3.389537518046875*^9}, {
+   3.38953759940625*^9, 3.389537611921875*^9}, {3.5072925686061373`*^9, 
+   3.507292610049281*^9}, {3.507292648822158*^9, 3.50729265454173*^9}, {
+   3.5072935613514013`*^9, 3.507293578857152*^9}, {3.50729386596486*^9, 
+   3.50729386996526*^9}, {3.5072939050187645`*^9, 3.5072939188751507`*^9}, {
+   3.5072953581951065`*^9, 3.507295366742107*^9}, {3.5072961439338927`*^9, 
+   3.5072961926615715`*^9}, 3.507296251679531*^9, 
+   3.733276924584272*^9},ExpressionUUID->"802729c9-69b6-48ac-b46e-\
+4bdf56c36313"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cnet$$ = 
+    True, $CellContext`cpts$$ = {{0, 0}, {0, 1}, {0.5, 1}, {1.5, 0}, {2, 0}, {
+     2, 1}}, $CellContext`deg$$ = 2, $CellContext`dummy$$ = 
+    Null, $CellContext`knots$$ = {0., 0., 0., 0.25, 0.5, 0.75, 1., 1., 
+    1.}, $CellContext`kpts$$ = True, $CellContext`lencpts$$ = 
+    6, $CellContext`pdeg$$ = 2, $CellContext`view$$ = 1, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`cpts$$], {{0, 0}, {0, 1}, {0.5, 1}, {1.5, 0}, {2, 
+        0}, {2, 1}}}, {-0.5, -0.5}, {2.5, 1.5}}, {{
+       Hold[$CellContext`deg$$], 2, "degree"}, 
+      Dynamic[
+       Range[1, 
+        Min[Length[$CellContext`cpts$$] - 1, 5]]]}, {{
+       Hold[$CellContext`cnet$$], True, "control polygon"}, {True, False}}, {{
+      
+       Hold[$CellContext`kpts$$], True, "knots on curve"}, {True, False}}, {{
+       Hold[$CellContext`view$$], 1, "view"}, {
+      1 -> " curve ", 2 -> " basis functions "}}, {{
+       Hold[$CellContext`dummy$$], Null, "control points"}, 1, 
+      Dynamic[Row[{
+         Spacer[10], 
+         Button[
+         "delete last", $CellContext`cpts$$ = 
+           Most[$CellContext`cpts$$]; $CellContext`knots$$ = \
+$CellContext`uniformknots[$CellContext`cpts$$, $CellContext`deg$$], Enabled -> 
+          Length[$CellContext`cpts$$] > 4], 
+         Spacer[10], 
+         Button[
+         "reset all", $CellContext`cpts$$ = {{0, 0}, {0, 1}, {0.5, 1}, {
+             1.5, 0}, {2, 0}, {2, 
+             1}}; $CellContext`knots$$ = $CellContext`uniformknots[{{0, 0}, {
+             0, 1}, {1, 1}, {1, 0}, {2, 0}, {2, 1}}, 2]; $CellContext`deg$$ = 
+           2]}]& , SynchronousUpdating -> False]}, {{
+       Hold[$CellContext`knots$$], {0., 0., 0., 0.25, 0.5, 0.75, 1., 1., 1.}, 
+       "knot control"}, 
+      Dynamic[$CellContext`knotslider[$CellContext`knots$$, \
+$CellContext`deg$$]& ]}, {{
+       Hold[$CellContext`pdeg$$], 2}}, {{
+       Hold[$CellContext`lencpts$$], 6}}}, Typeset`size$$ = Automatic, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`cpts$1770$$ = {0, 0}, $CellContext`cnet$1771$$ = 
+    False, $CellContext`kpts$1772$$ = False, $CellContext`view$1773$$ = 
+    False, $CellContext`dummy$1774$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`cnet$$ = 
+        True, $CellContext`cpts$$ = {{0, 0}, {0, 1}, {0.5, 1}, {1.5, 0}, {2, 
+          0}, {2, 1}}, $CellContext`deg$$ = 2, $CellContext`dummy$$ = 
+        Null, $CellContext`knots$$ = {0., 0., 0., 0.25, 0.5, 0.75, 1., 1., 
+         1.}, $CellContext`kpts$$ = True, $CellContext`lencpts$$ = 
+        6, $CellContext`pdeg$$ = 2, $CellContext`view$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`cpts$$, $CellContext`cpts$1770$$, {0, 0}], 
+        Hold[$CellContext`cnet$$, $CellContext`cnet$1771$$, False], 
+        Hold[$CellContext`kpts$$, $CellContext`kpts$1772$$, False], 
+        Hold[$CellContext`view$$, $CellContext`view$1773$$, False], 
+        Hold[$CellContext`dummy$$, $CellContext`dummy$1774$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> (
+       If[$CellContext`deg$$ > 
+         Min[Length[$CellContext`cpts$$] - 1, 5], $CellContext`deg$$ = 
+         Min[Length[$CellContext`cpts$$] - 1, 5]]; If[
+         Or[$CellContext`pdeg$$ != $CellContext`deg$$, $CellContext`lencpts$$ != 
+          Length[$CellContext`cpts$$]], $CellContext`deg$$ = 
+          Min[$CellContext`deg$$, Length[$CellContext`cpts$$] - 
+            1]; $CellContext`knots$$ = \
+$CellContext`uniformknots[$CellContext`cpts$$, $CellContext`deg$$]; \
+$CellContext`pdeg$$ = $CellContext`deg$$; $CellContext`lencpts$$ = 
+          Length[$CellContext`cpts$$]]; If[$CellContext`view$$ === 1, 
+         Graphics[{
+           Table[
+            Switch[$CellContext`i, 1, 
+             Text[
+              Style[$CellContext`i, White], 
+              Offset[
+              20 Normalize[
+                Part[$CellContext`cpts$$, 1] - Part[$CellContext`cpts$$, 2]], 
+               
+               Part[$CellContext`cpts$$, $CellContext`i]]], 
+             Length[$CellContext`cpts$$], 
+             Text[
+              Style[$CellContext`i, White], 
+              Offset[
+              20 Normalize[
+                Part[$CellContext`cpts$$, -1] - 
+                 Part[$CellContext`cpts$$, -2]], 
+               Part[$CellContext`cpts$$, -1]]], 
+             Blank[], 
+             Text[
+              Style[$CellContext`i, White], 
+              Offset[
+              20 Normalize[
+                Normalize[
+                  Part[$CellContext`cpts$$, $CellContext`i] - 
+                   Part[$CellContext`cpts$$, $CellContext`i - 1]] + 
+                 Normalize[
+                  Part[$CellContext`cpts$$, $CellContext`i] - 
+                   Part[$CellContext`cpts$$, $CellContext`i + 1]]], 
+               Part[$CellContext`cpts$$, $CellContext`i]]]], {$CellContext`i, 
+             
+             Length[$CellContext`cpts$$]}], 
+           If[$CellContext`cnet$$, {Yellow, 
+             Opacity[0.9], 
+             $CellContext`ControlNets[$CellContext`cpts$$]}, {}], White, 
+           AbsoluteThickness[2], 
+           If[
+            OrderedQ[$CellContext`knots$$], 
+            $CellContext`PlotBSplineCurve[$CellContext`cpts$$, \
+$CellContext`knots$$, $CellContext`deg$$, $CellContext`kpts$$], Do[
+              If[
+              Part[$CellContext`knots$$, $CellContext`i - 1] > 
+               Part[$CellContext`knots$$, $CellContext`i], 
+               Part[$CellContext`knots$$, $CellContext`i - 1] = 
+               Part[$CellContext`knots$$, $CellContext`i]], {$CellContext`i, 
+               2, 
+               
+               Length[$CellContext`knots$$]}]; \
+$CellContext`PlotBSplineCurve[$CellContext`cpts$$, $CellContext`knots$$, \
+$CellContext`deg$$, $CellContext`kpts$$]]}, 
+          PlotRange -> {{-0.5, 2.5}, {-0.5, 1.5}}, PlotRangePadding -> {{
+             Scaled[0.02], 
+             Scaled[0.02]}, {
+             Scaled[0.06], 
+             Scaled[0.02]}}, ImageSize -> {400, 280}, Frame -> False, 
+          GridLines -> Automatic, GridLinesStyle -> Directive[Gray, Dashed], 
+          Epilog -> Inset[
+            Style[
+             Row[{"knot vector: ", 
+               ReplaceAll[$CellContext`knots$$, {0. -> 0, 1. -> 1}]}], 11, 
+             White, "SmallText"], {Center, Bottom}, {Center, Bottom}], 
+          Background -> Hue[2/3, 0.5, 0.5]], 
+         Show[
+          If[
+           OrderedQ[$CellContext`knots$$], 
+           $CellContext`PlotBSplineBasis[$CellContext`knots$$, \
+$CellContext`deg$$], Do[
+             If[
+             Part[$CellContext`knots$$, $CellContext`i - 1] > 
+              Part[$CellContext`knots$$, $CellContext`i], 
+              Part[$CellContext`knots$$, $CellContext`i - 1] = 
+              Part[$CellContext`knots$$, $CellContext`i]], {$CellContext`i, 2, 
+              
+              Length[$CellContext`knots$$]}]; \
+$CellContext`PlotBSplineBasis[$CellContext`knots$$, $CellContext`deg$$]], 
+          ImageSize -> {400, 280}, ImagePadding -> {{30, 30}, {20, 20}}, 
+          Background -> Hue[2/3, 0.5, 0.5], PlotRangeClipping -> False, 
+          GridLines -> {None, {10.2, 10.4, 10.6, 10.8, 11}}, GridLinesStyle -> 
+          Directive[Dotted, Gray], Epilog -> With[{$CellContext`xpts = Union[
+               N[
+                Part[$CellContext`knots$$, 
+                 
+                 Span[$CellContext`deg$$ + 1, 
+                  Length[$CellContext`knots$$] - $CellContext`deg$$]]]]}, {
+             AbsolutePointSize[5], Red, 
+             Table[
+              Tooltip[
+               Point[{
+                 Part[$CellContext`xpts, $CellContext`i], 10}], 
+               Part[$CellContext`xpts, $CellContext`i]], {$CellContext`i, 
+               Length[$CellContext`xpts]}]}]]]), 
+      "Specifications" :> {{{$CellContext`cpts$$, {{0, 0}, {0, 1}, {0.5, 1}, {
+           1.5, 0}, {2, 0}, {2, 1}}}, {-0.5, -0.5}, {2.5, 1.5}, ControlType -> 
+         Locator, 
+         LocatorAutoCreate -> {4, 12}}, {{$CellContext`deg$$, 2, "degree"}, 
+         Dynamic[
+          Range[1, 
+           Min[Length[$CellContext`cpts$$] - 1, 5]]], ControlType -> 
+         RadioButtonBar}, {{$CellContext`cnet$$, True, "control polygon"}, {
+         True, False}}, {{$CellContext`kpts$$, True, "knots on curve"}, {
+         True, False}}, {{$CellContext`view$$, 1, "view"}, {
+         1 -> " curve ", 2 -> " basis functions "}}, {{$CellContext`dummy$$, 
+          Null, "control points"}, 1, 
+         Dynamic[Row[{
+            Spacer[10], 
+            Button[
+            "delete last", $CellContext`cpts$$ = 
+              Most[$CellContext`cpts$$]; $CellContext`knots$$ = \
+$CellContext`uniformknots[$CellContext`cpts$$, $CellContext`deg$$], Enabled -> 
+             Length[$CellContext`cpts$$] > 4], 
+            Spacer[10], 
+            Button[
+            "reset all", $CellContext`cpts$$ = {{0, 0}, {0, 1}, {0.5, 1}, {
+                1.5, 0}, {2, 0}, {2, 
+                1}}; $CellContext`knots$$ = $CellContext`uniformknots[{{0, 
+                0}, {0, 1}, {1, 1}, {1, 0}, {2, 0}, {2, 1}}, 
+                2]; $CellContext`deg$$ = 2]}]& , SynchronousUpdating -> 
+          False], ControlPlacement -> Bottom}, 
+        Delimiter, {{$CellContext`knots$$, {0., 0., 0., 0.25, 0.5, 0.75, 1., 
+          1., 1.}, "knot control"}, 
+         Dynamic[$CellContext`knotslider[$CellContext`knots$$, \
+$CellContext`deg$$]& ], ControlPlacement -> 
+         Bottom}, {{$CellContext`pdeg$$, 2}, ControlType -> 
+         None}, {{$CellContext`lencpts$$, 6}, ControlType -> None}}, 
+      "Options" :> {
+       AutorunSequencing -> {1, 5}, 
+        TrackedSymbols :> {$CellContext`cpts$$, $CellContext`deg$$, \
+$CellContext`cnet$$, $CellContext`kpts$$, $CellContext`view$$, \
+$CellContext`knots$$, $CellContext`pdeg$$, $CellContext`lencpts$$}, 
+        SynchronousInitialization -> False}, 
+      "DefaultOptions" :> {ControllerLinking -> True}],
+     ImageSizeCache->{451., {267., 272.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`DivZ[
+         Pattern[$CellContext`s, 
+          Blank[]], 
+         Condition[
+          Pattern[$CellContext`t, 
+           Blank[]], $CellContext`t == 0]] := 0.; $CellContext`DivZ[
+         Pattern[$CellContext`s, 
+          Blank[]], 
+         Pattern[$CellContext`t, 
+          Blank[]]] := N[$CellContext`s/$CellContext`t]; $CellContext`PowerZ[
+         Condition[
+          Pattern[$CellContext`x, 
+           Blank[]], $CellContext`x == 0], 
+         Condition[
+          Pattern[$CellContext`y, 
+           Blank[]], $CellContext`y == 0]] := 1.; $CellContext`PowerZ[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`y, 
+          Blank[]]] := 
+       N[$CellContext`x^$CellContext`y]; $CellContext`iBSplineBasis[
+         Pattern[$CellContext`i, 
+          Blank[]], 0, 
+         Pattern[$CellContext`knots, 
+          Blank[]]] := Function[{$CellContext`t}, 
+         If[
+          Or[
+           Inequality[
+            Part[$CellContext`knots, $CellContext`i], 
+            LessEqual, $CellContext`t, Less, 
+            Part[$CellContext`knots, $CellContext`i + 1]], 
+           
+           And[$CellContext`t == 1., 
+            Part[$CellContext`knots, $CellContext`i + 1] == 1.]], 1., 
+          0.]]; $CellContext`iBSplineBasis[
+         Pattern[$CellContext`i, 
+          Blank[]], 
+         Pattern[$CellContext`k, 
+          Blank[]], 
+         Pattern[$CellContext`knots, 
+          Blank[]]] := 
+       With[{$CellContext`l = $CellContext`k - 
+           1, $CellContext`j = $CellContext`i + 1}, 
+         Function[{$CellContext`t}, $CellContext`DivZ[$CellContext`t - 
+             Part[$CellContext`knots, $CellContext`i], 
+             Part[$CellContext`knots, $CellContext`i + $CellContext`k] - 
+             Part[$CellContext`knots, $CellContext`i]] \
+$CellContext`iBSplineBasis[$CellContext`i, $CellContext`l, \
+$CellContext`knots][$CellContext`t] + $CellContext`DivZ[
+            Part[$CellContext`knots, $CellContext`i + $CellContext`k + 
+               1] - $CellContext`t, 
+             Part[$CellContext`knots, $CellContext`i + $CellContext`k + 1] - 
+             Part[$CellContext`knots, $CellContext`i + 
+              1]] $CellContext`iBSplineBasis[$CellContext`j, $CellContext`l, \
+$CellContext`knots][$CellContext`t]]]; $CellContext`PlotBSplineBasis[
+         Pattern[$CellContext`knots, 
+          Blank[]], 
+         Pattern[$CellContext`deg, 
+          Blank[]]] := Plot[
+         Evaluate[
+          Table[
+           Tooltip[
+           10 + $CellContext`iBSplineBasis[$CellContext`j, $CellContext`deg, \
+$CellContext`knots][$CellContext`t], 
+            Subscript[
+             Style["N", Italic], 
+             
+             Row[{$CellContext`j - 1, 
+               ",", $CellContext`deg}]]], {$CellContext`j, 
+            Length[$CellContext`knots] - 
+            1 - $CellContext`deg}]], {$CellContext`t, 0, 1}, PlotStyle -> 
+         Table[
+           Directive[
+            Lighter[
+             ColorData[1][$CellContext`j], 0.5], Thick], {$CellContext`j, 
+            Length[$CellContext`knots] - 1 - $CellContext`deg}], 
+         PlotRange -> {{0, 1}, {10, 11}}, Exclusions -> None, 
+         Ticks -> {
+          Automatic, {{10.2, 0.2}, {10.4, 0.4}, {10.6, 0.6}, {10.8, 0.8}, {11,
+             1}}}, AxesStyle -> LightGray]; $CellContext`iBSplineCurve[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`knots, 
+          Blank[]]] := 
+       With[{$CellContext`n = Length[$CellContext`x], $CellContext`m = 
+          Length[$CellContext`knots] - Length[$CellContext`x] - 1}, 
+         Function[{$CellContext`t}, 
+          Dot[
+           Table[
+            $CellContext`iBSplineBasis[$CellContext`i, $CellContext`m, \
+$CellContext`knots][$CellContext`t], {$CellContext`i, $CellContext`n}], \
+$CellContext`x]]]; $CellContext`PlotBSplineCurve[
+         Pattern[$CellContext`x, 
+          Blank[]], 
+         Pattern[$CellContext`knots, 
+          Blank[]], 
+         Pattern[$CellContext`deg, 
+          Blank[]], 
+         Pattern[$CellContext`kf, 
+          Blank[]]] := Module[{$CellContext`xpts = Union[
+            N[
+             Part[$CellContext`knots, 
+              
+              Span[$CellContext`deg + 1, 
+               Length[$CellContext`knots] - $CellContext`deg]]]], \
+$CellContext`xmulti = Map[Length, 
+            Split[
+             N[
+              Part[$CellContext`knots, 
+               
+               Span[$CellContext`deg + 1, 
+                Length[$CellContext`knots] - $CellContext`deg]]]]], \
+$CellContext`f, $CellContext`s}, $CellContext`f = \
+$CellContext`iBSplineCurve[$CellContext`x, \
+$CellContext`knots][$CellContext`s]; {
+           Table[{
+             If[
+             Part[$CellContext`xmulti, $CellContext`i + 
+                1] <= $CellContext`deg, 
+              Line[
+               Table[
+                
+                ReplaceAll[$CellContext`f, $CellContext`s -> $CellContext`t], \
+{$CellContext`t, 
+                 Part[$CellContext`xpts, $CellContext`i], 
+                 Part[$CellContext`xpts, $CellContext`i + 1], 
+                 ControlActive[0.25, 0.05] (
+                  Part[$CellContext`xpts, $CellContext`i + 1] - 
+                  Part[$CellContext`xpts, $CellContext`i])}]], 
+              Line[
+               Table[
+                
+                ReplaceAll[$CellContext`f, $CellContext`s -> $CellContext`t], \
+{$CellContext`t, 
+                 Append[
+                  Most[
+                   Range[
+                    Part[$CellContext`xpts, $CellContext`i], 
+                    Part[$CellContext`xpts, $CellContext`i + 1], 
+                    ControlActive[0.25, 0.05] (
+                    Part[$CellContext`xpts, $CellContext`i + 1] - 
+                    Part[$CellContext`xpts, $CellContext`i])]], 
+                  Part[$CellContext`xpts, $CellContext`i + 1] - 0.001]}]]], 
+             If[$CellContext`kf, {Red, 
+               AbsolutePointSize[5], 
+               Tooltip[
+                Point[
+                 
+                 ReplaceAll[$CellContext`f, $CellContext`s -> 
+                  Part[$CellContext`xpts, $CellContext`i]]], 
+                
+                Part[$CellContext`xpts, $CellContext`i]]}, {}]}, \
+{$CellContext`i, Length[$CellContext`xpts] - 1}], 
+           If[$CellContext`kf, {Red, 
+             AbsolutePointSize[5], 
+             Tooltip[
+              Point[
+               
+               ReplaceAll[$CellContext`f, $CellContext`s -> 
+                Part[$CellContext`xpts, -1]]], 
+              Part[$CellContext`xpts, -1]]}, {}]}]; $CellContext`ControlNets[
+         Pattern[$CellContext`x, {
+           Repeated[{
+             Blank[], 
+             Blank[]}]}]] := GraphicsComplex[$CellContext`x, {
+          Line[
+           
+           Table[{$CellContext`i, $CellContext`i + 1}, {$CellContext`i, 
+             Length[$CellContext`x] - 1}]]}]; $CellContext`uniformknots[
+         Pattern[$CellContext`cpts, 
+          Blank[]], 
+         Pattern[$CellContext`deg, 
+          Blank[]]] := Join[
+         ConstantArray[0., $CellContext`deg + 1], 
+         Table[
+          
+          Round[$CellContext`i/(Length[$CellContext`cpts] - $CellContext`deg),
+            0.01], {$CellContext`i, 
+           Length[$CellContext`cpts] - $CellContext`deg - 1}], 
+         ConstantArray[1., $CellContext`deg + 1]]; $CellContext`knotslider[
+         Pattern[$CellContext`knots, 
+          Blank[]], 
+         Pattern[$CellContext`deg, 
+          Blank[]]] := 
+       With[{$CellContext`r = 
+          Range[$CellContext`deg + 2, 
+            Length[$CellContext`knots] - $CellContext`deg - 1]}, 
+         If[$CellContext`r === {}, 
+          Grid[{{
+             Spacer[3], "no knot control", 
+             Spacer[2], "(Be'zier curve)"}}], 
+          Grid[
+           Map[{
+             Spacer[3], 
+             Subscript[
+              Style["t", Italic], # - 1], 
+             Slider[
+              Dynamic[
+               Part[$CellContext`knots, #]], {0, 1, 0.01}, Appearance -> 
+              "UpArrow", ImageSize -> {200, 12}], 
+             Dynamic[
+              Part[$CellContext`knots, #]]}& , $CellContext`r]]]]; 
+      SetAttributes[$CellContext`knotslider, HoldAll]; Null); 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->False,
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.733276924584572*^9},
+ CellID->334701150,ExpressionUUID->"b40c0c48-ea90-4cec-8833-3650607b12fc"]
+}, {2}]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{226, Automatic}, {Automatic, 38}},
+FrontEndVersion->"11.1 for Mac OS X x86 (32-bit, 64-bit Kernel) (April 27, \
+2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 43751, 1051, 70, "Input", "ExpressionUUID" -> \
+"802729c9-69b6-48ac-b46e-4bdf56c36313"],
+Cell[44334, 1075, 19187, 424, 556, "Output", "ExpressionUUID" -> \
+"b40c0c48-ea90-4cec-8833-3650607b12fc",
+ CellID->334701150]
+}, {2}]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

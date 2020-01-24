@@ -53,7 +53,7 @@ if nargin==2 || nargin==3 || (nargin>=4 && ~noInsert) %refinement
             %the actually inserted knots due to fnrfn internal checks
     end
 else %no refinement (no knots inserted)
-   if sp.dim==1
+   if sp.dim==1 && 0
         knotPlotter(sp.knots, sp.coefs);
    end
 end % end if

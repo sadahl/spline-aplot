@@ -228,6 +228,7 @@ pc = plot(xxstar, sp.coefs,'--ok');%, 'DisplayName', legcp);
 origxx=sp.knots; % keeping the original knots
 xx=origxx;
 xx=.5;  %choosing where to insert a knot
+% xx=xxstar(3);
 
 % legcpr=sprintf('Refined control Polygon, N=%d',N);
 hold on;
@@ -248,7 +249,11 @@ set(pr,'XData',xxstarnew,'YData',spr.coefs);%,'DisplayName',mylegend);
 legend('off');
 drawnow;
 
-knotPlotter(sp.knots, sp.coefs, xx); hold off;
+knotPlotter(sp.knots, sp.coefs, xx);
+
+fnpltpoints=fnplt(sp); %plotted with reference tool fnplt
+legsp='The spline';
+ps=plot(fnpltpoints(1,:),fnpltpoints(2,:), 'r'); hold off;
 % saveas(gcf,'../figures/cpbehaveodd','epsc');
 
 
@@ -286,7 +291,7 @@ knotPlotter(sp.knots, sp.coefs, xx);
 
 fnpltpoints=fnplt(sp); %plotted with reference tool fnplt
 legsp='The spline';
-ps=plot(fnpltpoints(1,:),fnpltpoints(2,:), 'r.'); hold off;
+ps=plot(fnpltpoints(1,:),fnpltpoints(2,:), 'r'); hold off;
 
 % saveas(gcf,'../figures/cpbehaveeven','epsc');
 
@@ -367,6 +372,16 @@ splinePlot2(sptest1,1,1,1); % hakkete!
 axis off;
 % saveas(gcf,'../figures/testcurve1','epsc'); hold off;
 
+%% Function, high degree, many variations
+% Lyche, From Spline Methods Draft, 2018
+p=25; n=26;
+t=augknt(linspace(0,1,2),p+1);
+c=[2 1 5 5 2 5 6 6 0 5 2 3 2 2 2 5 6 3 1 0 5 5 1 6 2 2];
+sptest2=spmak(t,c)
+splinePlot2(sptest2,1,1,1);
+axis off;
+% saveas(gcf,'../figures/testcurve2','epsc'); hold off;
+
 %% Experimenting with 'imitating Chaikin's algorithm' (Refinement rule)
 % Using test splines 0 and 1
 % We insert knots such that we obtain new control points
@@ -437,6 +452,36 @@ plot(xx,pi/2*-xx.*abs(xx)+pi./2,'b');
 % saveas(gcf,'../figures/cosvariation','epsc'); hold off;
 % myf=@(alpha) sin(pi/2-alpha); hold on;
 % plot(xx,myf(xx),'m');
+
+%% Sensibility of the angle transformation for the relevant limit values
+% We must confirm the variations for alpha in [0, 10] (degrees), 
+% since values in this interval are likely to be chosen as angle limits.
+% It turns out a quadratic polynomial gives a good description of their
+% relation.
+alphatau=10; % degrees
+alpha=linspace(0, alphatau*pi/180, 11);
+vals=cos(alpha);
+talpha=-pi/2*vals.*abs(vals)+pi/2;
+figure();
+plot(alpha*180/pi, talpha*180/pi, 'r'); % plot with axes in degrees
+    % should fit well with a regular quadratic polynomial in this range
+[f, gof] = fit(alpha', talpha', 'poly2')
+% f = 
+% 
+%      Linear model Poly2:
+%      f(x) = p1*x^2 + p2*x + p3
+%      Coefficients (with 95% confidence bounds):
+%        p1 =       1.543  (1.536, 1.55)
+%        p2 =    0.002475  (0.001209, 0.003741)
+%        p3 =  -3.129e-05  (-7.878e-05, 1.62e-05)
+%   rsquare: 1.000
+tauconvert = 1.543;
+ftilde = @(x) tauconvert*x.^2;  % NB: x in radians
+ftilde(alpha)
+hold on;
+plot(alpha*180/pi, ftilde(alpha)*180/pi, '--k'); % a good fit
+% saveas(gcf,'../figures/angle_trnsflimits','epsc'); hold off;
+
 
 %% Visual smoothness - curvature and arc length
 % From Eriksen, p41
@@ -548,26 +593,71 @@ splinePlot2(sp,1,1,1);
 % saveas(gcf,'../figures/cpsmooth','epsc'); hold off;
 
 %% operation count for overall adaptive algorithm
-N0vals=[8 100]; %nb of points to start with
+N0vals=[10 100]; %nb of points to start with
 % K=[10 50 100 200 500]; %nb of inserted knots
-K=[10 30 100 500];
+K=[10 50 400];% 100 500];
 Nk=length(K);
 p=[0:30]; %degree of spline
-%'Q=76*p*K';
+Q=53*p; % number of operations per iteration
 figure();
 N0=N0vals(1);
 for i = 1:Nk
-    R=76*p*K(i)/(N0+K(i));
-    plot(p,R,'--k'); hold on;
+    R=Q*K(i)/(N0+K(i));
+    plot(p,R,'-.k'); hold on;
 end %end for
 N0=N0vals(2);
 for i = 1:Nk
-    R=76*p*K(i)/(N0+K(i));
+    R=Q*K(i)/(N0+K(i));
     plot(p,R,'-.b'); hold on;
 end %end for
 Reval=3/2*p.*(p+1); % cost per point for the unif. eval. method, per dim.
-plot(p,Reval,'r');
-plot(p,2*Reval,'m');
-xlabel('Degree p'); ylabel('Operations per point Q')
+% plot(p,Reval,'m'); % one dimension - not relevant here
+plot(p,2*Reval,'r');
+xlabel('Degree, p'); ylabel('Operations per final point, R')
+axis([0 30 0 1500]);
 
 % saveas(gcf,'../figures/opscompare','epsc'); hold off;
+
+%% general operation count for overall adaptive algorithm
+yvec=[.2 1 2 10 1000] % proportion of inserted knots rel. to nb of orig. kn.
+p=[0:30]; %degree of spline
+sveccolor=['-.k' '- k']  %keep three characters for each
+figure();
+for s = 2:2 %dimension of coordinates
+    for i = 1:length(yvec)
+        y=yvec(i);
+    %     k=3/2*(p+1)*(y+1)*s/y-13-3*s
+        k=3/2*(p+1)*s*(1+1/y)-3*s-13;
+        plot(p,k,sveccolor((3*s-2):3*s)); hold on;
+    end %end for
+end % end for
+
+%horizontal sections
+l1=2
+l2=5
+a1=23
+a2=40
+b1=30
+b2=56
+lb=19
+horiz=[l1 l2 lb a1 b1 a2 b2];
+for i=1:length(horiz)
+    plot([p(1) p(length(p))],[horiz(i) horiz(i)],'-.')
+end % end for
+    
+xlabel('Degree, p'); ylabel('Threshold, k')
+axis([0 30 0 70]);
+
+% saveas(gcf,'../figures/opscomparegen','epsc'); hold off;
+
+%% thresholds, y -> inf
+l1=2
+l2=5
+lb=19
+a1=23
+a2=40
+b1=30
+b2=56
+horiz=[l1 l2 lb a1 b1 a2 b2];
+klim_s1=(horiz+29/2)*2/3
+klim_s2=(horiz+16)/3

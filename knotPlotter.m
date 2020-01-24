@@ -15,7 +15,7 @@ hold on;
 if nargin==3
     newt = sort(newt);
     newm = knt2mlt(newt);
-    %shifting if some knots were already in t
+    %shifting vertically when there are multiplicities
     tshare=sort(intersect(newt,t));
     for i=1:length(tshare)
         element=tshare(i);

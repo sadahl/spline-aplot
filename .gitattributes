@@ -1,0 +1,5 @@
+# *.nb linguist-language=Mathematica
+*.java linguist-vendored
+# *.nb linguist-generated
+*.nb -linguist-detectable
+#.* -linguist-documentation

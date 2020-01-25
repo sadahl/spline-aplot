@@ -1,5 +1,7 @@
 # spline-aplot
-Experimenting with adaptive plotting of splines given in B-form. Implementation in MATLAB.
+Experimenting with adaptive plotting of splines given in B-form.
+
+The adaptive method renders the control polygon of a spline, then checks it for smoothness criteria. If it is not smooth enough, a knot is inserted to refine the control polygon. When the control polygon is judged smooth enough, it is plotted. The method relies on the spline property of convergence of the control polygon to the spline under knot insertion. Implementation in MATLAB.
 
 1) Start with reading 'Dahl_thesis.pdf', at least skim through sections 3.2-3.6. Read also 'chapterX.pdf' for precisions and an update on a few points relevant to the implementation of the methods.
 2) The script 'introPlotting.m' shows how to use the Curve Fitting Toolbox and some of the auxiliary functions developed for this project.

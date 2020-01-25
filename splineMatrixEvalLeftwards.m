@@ -7,7 +7,6 @@ function [fx, mu] = splineMatrixEvalLeftwards(p, tvec, c0, x, muin)
 %c0 is the vector holding the B-spline coefficients
 %x is the evaluation point
 %muin is an optional argument that may speed up the computation
-%(Compendium:  using algorithms 2.20 & 1.3, Exercise 2.13)
 
 if nargin == 5
     mu=findMu(tvec, x, muin);

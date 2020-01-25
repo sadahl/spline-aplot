@@ -1,5 +1,7 @@
 function [spr, splineValuesnew, N] = ...
     splinePlot(sp, maxN, r, method, mytitle, showSpline, showSampledSpline)
+%DEPRECATED - KEPT FOR ARCHIVE and
+%CONTINUED SUPPORT FOR OLD SCRIPTS ('introPlotting.m')    
 %Plots the spline sp and its control polygon. The control polygon is
 %refined in 'r' rounds using method 'method'.
 %Valid methods: uniform, newknt, optknt, chbknt.

@@ -1,4 +1,6 @@
 function spr =  splinePlot2(sp,insertFunction, plotSpline, noInsert)
+%DEPRECATED - KEPT FOR ARCHIVE and
+%CONTINUED SUPPORT FOR OLD SCRIPTS ('introPlotting.m').
 %Plots the refined control polygon of sp using refinement method
 %insertFunction
 

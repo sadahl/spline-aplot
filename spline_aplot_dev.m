@@ -41,7 +41,7 @@ function [ spr, tadded, flag ] = spline_aplot_dev( sp, C, R, S, Sigma )
 %              break, measured in pixels. 
 %              Linked to epsilon=delta/ro*deltac where ro is screen size in
 %              pixels and deltac is size of box holding the spline sp.
-%              Default: 5 pixels.
+%              Default: 3 pixels.
 %       skip   tests for eps criteria every skip iterations. Default: 1.
 %       consec number of consecutive iterations yielding change below eps
 %              needed before break. Default: 5.
@@ -49,7 +49,7 @@ function [ spr, tadded, flag ] = spline_aplot_dev( sp, C, R, S, Sigma )
 %              property chosen in criterion C. Iterations will stop if no
 %              region under the threshold is found. Uses default tau:
 %                   length methods:     epsilon
-%                   ratio method:       1+delta/l_max
+%                   ratio method:       1 + .1*delta/l_max
 %                       (takes l_max = ro if no prephase)
 %                   angle methods:      2*pi/180 (rad, corr. 2 degrees)
 %                   distance methods:   epsilon (comp. can be refined)
@@ -104,7 +104,7 @@ if nargin>=4
 else
     disp('Using default values for stopping criterion S...');
     N = 10;%500;
-    delta = 5;
+    delta = 3;
     skip = 1;
     consec = 5;
     tbreak = 1;
@@ -138,7 +138,7 @@ switch C
         r=0; % range parameter
         myC = @C_lengthsq;
     case 3 % length_ratio
-        if ~usertau, tau = 1 + delta/ro; end
+        if ~usertau, tau = (1 + .1*delta/ro); end
         r=0;
         myC = @C_lengthratio;
     case 4 % angledot_simple
@@ -182,6 +182,7 @@ end
 
 %Prephase: Insert knots to ensure each control polygon segment is shorter
 %than a specified value, for instance ro/2^6.
+% l_max = ... % redefine tau if C=3 (lenghratio-method)
 %To be implemented.
 
 %Set up heap here? To be implemented.
@@ -197,9 +198,9 @@ lsize = 3; % size of local control polygons. One inner point.
 while Ni < N
     %Searching using criteria C
     [mu, r, crit] = myC(cpoints, lsize, knotmu);
-    crit
+%     crit
     
-    if tbreak && crit<tau % measured criteria within threshold, exits loop.
+    if tbreak && crit<tau % measured criteria within threshold
         disp('Criteria tau reached, exiting')
         flag=1;
         return;         % possible improvement: change to another crit. C.
